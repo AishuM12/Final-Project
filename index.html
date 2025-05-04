@@ -9,7 +9,15 @@
 <body>
   <h1>Destination of the Day</h1>
 
-  <button id="show-country-btn">Show Me a Country</button>
+  <select id="country-select">
+    <option value="Portugal">Portugal</option>
+    <option value="MSFT" selected>Microsoft (MSFT)</option>
+            <option value="GOOG">Google (GOOGL)</option>
+            <option value="AAPL">Apple (AAPL)</option>
+            <option value="NFLX">Netflix (NFLX)</option>
+            <option value="SPOT">Spotify (SPOT)</option>
+            <option value="SPOT">Pinterest (PINS)</option>
+  </select>
 
   <div id="country-card" class="hidden">
     <h2 id="country-name"></h2>
@@ -22,3 +30,20 @@
       <li><strong>Top-level domain:</strong> <span id="tld"></span></li>
     </ul>
   </div>
+
+
+
+  <script type="text/javascript">
+
+    // Defining variables
+
+    var countryName = document.getElementById("country-name")
+    var region = document.getElementById("region")
+    var capital = document.getElementById("capital");
+    var population = document.getElementById("population");
+    var languages = document.getElementById("languages");
+    var currency = document.getElementById("currency")
+
+
+
+  </script>
