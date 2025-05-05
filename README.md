@@ -1,0 +1,4 @@
+- Website: https://restcountries.com/  
+- Endpoint used: `https://restcountries.com/v3.1/all`  
+- No API key required  
+- Data returned in JSON format

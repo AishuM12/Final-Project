@@ -51,3 +51,7 @@
   #country-card li {
     margin-bottom: 8px;
   }
+
+  .hidden {  /* took help of AI */
+    display: none;
+  }
