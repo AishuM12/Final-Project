@@ -60,3 +60,19 @@
   .hidden {  /* took help of AI */
     display: none;
   }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 1.4em;
+    }
+  
+    #country-select {
+      width: 100%;
+      font-size: 1em;
+    }
+  
+    #country-card {
+      padding: 15px;
+      font-size: 0.95em;
+    }
+  }
