@@ -24,13 +24,14 @@
   <!-- About Country -->
   <div id="country-card" class="hidden">
     <h2 id="country-name"></h2>
+    <img id="country-flag" src="" alt="Flag" width="200" />
     <ul>
       <li><strong>Region:</strong> <span id="region"></span></li>
       <li><strong>Capital:</strong> <span id="capital"></span></li>
       <li><strong>Population:</strong> <span id="population"></span></li>
       <li><strong>Languages:</strong> <span id="languages"></span></li>
       <li><strong>Currency:</strong> <span id="currency"></span></li>
-      <li><strong>Top-level domain:</strong> <span id="tld"></span></li>
+      <li><strong>Time Zone(s):</strong> <span id="timezones"></span></li>
     </ul>
   </div>
 
@@ -38,18 +39,21 @@
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script type="text/javascript">
+    
     var requestUrl = 'https://restcountries.com/v3.1/all';
 
     // Element References
-    var countrySelect = document.getElementById("country-select");
-    var countryName = document.getElementById("country-name");
-    var region = document.getElementById("region");
-    var capital = document.getElementById("capital");
-    var population = document.getElementById("population");
-    var languages = document.getElementById("languages");
-    var currency = document.getElementById("currency");
-    var tld = document.getElementById("tld");
-    var card = document.getElementById("country-card");
+    var countrySelect = document.getElementById("country-select")
+    var countryName = document.getElementById("country-name")
+    var region = document.getElementById("region")
+    var capital = document.getElementById("capital")
+    var population = document.getElementById("population")
+    var languages = document.getElementById("languages")
+    var currency = document.getElementById("currency")
+    var tld = document.getElementById("tld")
+    var card = document.getElementById("country-card")
+    var flag = document.getElementById("country-flag")
+    var timezones = document.getElementById("timezones")
 
     d3.json(requestUrl).then(function(data) {
       console.log("DATA:", data);
@@ -97,16 +101,10 @@
             currency.innerText = "N/A";
           }
 
-          if (country.tld) {
-            tld.innerText = country.tld[0];
-          } else {
-            tld.innerText = "N/A";
-          }
-
-          card.classList.remove("hidden");
+          card.classList.remove("hidden")
         } else {
           console.log("Country not found in data."); // Took help of AI tools
-          card.classList.add("hidden");
+          card.classList.add("hidden")
         }
       });
     });
