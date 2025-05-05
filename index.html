@@ -7,8 +7,10 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  
   <h1>Destination of the Day</h1>
 
+  <!-- Drop-down menu -->
   <select id="country-select">
     <option value="N/A">Select a Country</option>
     <option value="India">India</option>
@@ -16,9 +18,10 @@
     <option value="Mexico">Mexico</option>
     <option value="Portugal">Portugal</option>
     <option value="Turkey">Turkey</option>
-    <option value="USA">USA</option>
+    <option value="United States">USA</option>
   </select>
 
+  <!-- About Country -->
   <div id="country-card" class="hidden">
     <h2 id="country-name"></h2>
     <ul>
@@ -35,25 +38,78 @@
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script type="text/javascript">
+    var requestUrl = 'https://restcountries.com/v3.1/all';
 
-  var requestUrl = 'https://restcountries.com/v3.1/all'
-  d3.json(requestUrl).then(function(data){
-    console.log("DATA:", data)
+    // Element References
+    var countrySelect = document.getElementById("country-select");
+    var countryName = document.getElementById("country-name");
+    var region = document.getElementById("region");
+    var capital = document.getElementById("capital");
+    var population = document.getElementById("population");
+    var languages = document.getElementById("languages");
+    var currency = document.getElementById("currency");
+    var tld = document.getElementById("tld");
+    var card = document.getElementById("country-card");
 
-    // Element References 
+    d3.json(requestUrl).then(function(data) {
+      console.log("DATA:", data);
 
-    var countryName = document.getElementById("country-name")
-    var region = document.getElementById("region")
-    var capital = document.getElementById("capital")
-    var population = document.getElementById("population")
-    var languages = document.getElementById("languages")
-    var currency = document.getElementById("currency")
+      countrySelect.addEventListener("change", function() {
+        var selected = countrySelect.value;
 
-    var selectedCountries = ["Portugal", "India", "Turkey", "Mexico", "United States", "Indonesia"]
+        if (selected === "N/A") {
+          card.classList.add("hidden");
+          return;
+        }
 
-   // Updating the page
-    displaycountryName.innerText = data.drinks.length
+        var country = data.find(function(c) {
+          return c.name.common === selected;
+        });
 
+        if (country) {
+          countryName.innerText = country.name.common;
+          region.innerText = country.region;
 
-  })
+          if (country.capital) {
+            capital.innerText = country.capital[0];
+          } else {
+            capital.innerText = "N/A";
+          }
+
+          population.innerText = country.population;
+
+          if (country.languages) {
+            var langList = "";
+            for (var key in country.languages) {
+              langList += country.languages[key] + ", "; // Took help of AI tools
+            }
+            languages.innerText = langList.slice(0, -2); // Took help of AI tools
+          } else {
+            languages.innerText = "N/A";
+          }
+
+          if (country.currencies) {
+            for (var key in country.currencies) {
+              currency.innerText = country.currencies[key].name + " (" + key + ")";
+              break;
+            }
+          } else {
+            currency.innerText = "N/A";
+          }
+
+          if (country.tld) {
+            tld.innerText = country.tld[0];
+          } else {
+            tld.innerText = "N/A";
+          }
+
+          card.classList.remove("hidden");
+        } else {
+          console.log("Country not found in data."); // Took help of AI tools
+          card.classList.add("hidden");
+        }
+      });
+    });
   </script>
+</body>
+</html>
