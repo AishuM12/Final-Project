@@ -11,3 +11,8 @@
     text-align: center;
     color: #333;
   }
+  h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #1a73e9;
+  }
