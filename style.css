@@ -11,8 +11,15 @@
     text-align: center;
     color: #333;
   }
+
   h1 {
     margin-bottom: 20px;
     font-size: 2em;
     color: #1a73e9;
+  }
+
+  #country-select {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 30px;
   }
